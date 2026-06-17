@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pago extends Model
 {
-    protected $fillable = ["sesion_id, paquete_id, monto, estado, fecha_pago"];
+    protected $fillable = ["sesion_id", "paquete_id", "monto", "estado", "fecha_pago"];
 
     public function sesion() {
         return $this->belongsTo(Sesion::class,"sesion_id");

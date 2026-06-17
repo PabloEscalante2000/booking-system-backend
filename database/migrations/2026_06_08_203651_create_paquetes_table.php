@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('paquetes', function (Blueprint $table) {
             $table->id();
             $table->text("notas")->nullable();
+            $table->smallInteger("num_sesiones");
+            $table->decimal("precio_total",8,2);
             $table->timestamps();
         });
     }

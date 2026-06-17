@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId("sesion_id")->nullable()->constrained("sesions")->cascadeOnDelete();
             $table->foreignId("paquete_id")->nullable()->constrained("paquetes")->cascadeOnDelete();
             $table->decimal("monto",8,2);
+            $table->enum("estado",["c","p","a"])->default("p"); // * completado, pendiente, anulado
+            $table->date("fecha_pago");
             $table->timestamps();
         });
     }
