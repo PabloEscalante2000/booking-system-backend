@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('paquetes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("terapeuta_id")->nullable()->constrained("users")->cascadeOnDelete();
+            $table->foreignId("paciente_id")->nullable()->constrained("users")->cascadeOnDelete();
             $table->text("notas")->nullable();
             $table->smallInteger("num_sesiones");
             $table->decimal("precio_total",8,2);

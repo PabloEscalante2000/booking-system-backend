@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('terapeuta_horarios', function (Blueprint $table) {
             $table->id();
             $table->foreignId("terapeuta_id")->constrained("users")->cascadeOnDelete();
-            $table->enum("dia",[0,1,2,3,4,5,6]);
+            $table->tinyInteger("dia")->unsigned();
             $table->time("hora_inicio");
             $table->time("hora_final");
-            $table->smallInteger("slot_duration");
+            $table->unsignedSmallInteger("slot_duration");
             $table->boolean("is_active")->default(true);
             $table->date("valido_desde");
             $table->date("valido_hasta");

@@ -11,8 +11,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\TerapeutaHorario;
-use App\Models\HorarioExcepciones;
-use App\Models\SlotsViables;
 
 #[Fillable(['name', 'email', 'password', 'imagen', 'precio', 'rol', 'is_active', 'especialidad'])]
 #[Hidden(['password', 'remember_token'])]
@@ -30,7 +28,9 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
+            'precio'            => 'decimal:2',
+            'is_active'         => 'boolean',
         ];
     }
 
@@ -39,10 +39,18 @@ class User extends Authenticatable
     } 
 
     public function horariosExcepciones(){
-        return $this->hasMany(HorarioExcepciones::class,"terapeuta_id");
+        return $this->hasMany(HorarioExcepcion::class,"terapeuta_id");
     } 
 
     public function slotsViables(){
-        return $this->hasMany(SlotsViables::class,"terapeuta_id");
+        return $this->hasMany(SlotsViable::class,"terapeuta_id");
     } 
+
+    public function sesionsComoTerapeuta(){
+        return $this->hasMany(Sesion::class,"terapeuta_id");
+    }
+
+    public function sesionsComoPaciente(){
+        return $this->hasMany(Sesion::class,"paciente_id");
+    }
 }

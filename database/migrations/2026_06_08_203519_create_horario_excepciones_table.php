@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date("expiration_date");
             $table->text("razon");
             $table->enum("tipo",["dia","horas"]);
-            $table->date("valido_desde");
-            $table->date("valido_hasta");
+            $table->dateTime("hora_inicio")->nullable();
+            $table->dateTime("hora_final")->nullable();
             $table->timestamps();
         });
     }

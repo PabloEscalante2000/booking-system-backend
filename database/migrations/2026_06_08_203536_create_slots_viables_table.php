@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('slots_viables', function (Blueprint $table) {
             $table->id();
             $table->foreignId("terapeuta_id")->constrained("users")->cascadeOnDelete();
-            $table->date("fecha_inicio");
-            $table->date("fecha_final");
+            $table->dateTime("fecha_inicio");
+            $table->dateTime("fecha_final");
             $table->enum("estatus",["d","r","b"])->default("d"); // * disponible, reservado, bloqueado
             $table->enum("source",["m","g"]); // * manual, generado
             $table->timestamps();

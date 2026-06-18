@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId("terapeuta_id")->nullable()->constrained("users")->cascadeOnDelete();
             $table->foreignId("paciente_id")->nullable()->constrained("users")->cascadeOnDelete();
             $table->foreignId("paquete_id")->nullable()->constrained("paquetes")->cascadeOnDelete();
-            $table->date("horario")->nullable();
-            $table->smallInteger("duracion");
+            $table->dateTime("horario")->nullable();
+            $table->unsignedSmallInteger("duracion");
             $table->enum("modalidad",["v","p"])->default("p"); // * virtual, presencial
             $table->enum("estatus",["d","r","b"])->default("d"); // * disponible, reservado, bloqueado
             $table->text("razon_cancelacion")->nullable();

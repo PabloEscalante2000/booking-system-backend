@@ -8,8 +8,14 @@ class Sesion extends Model
 {
     protected $fillable = ["slot_id","terapeuta_id","paquete_id","paciente_id","horario","duracion","modalidad", "estatus","razon_cancelacion","notas","precio"];
 
+    protected $casts = [
+        'horario'  => 'datetime',
+        'precio'   => 'decimal:2',
+        'duracion' => 'integer',
+    ];
+
     public function slot(){
-        return $this->belongsTo(SlotsViables::class, 'slot_id');
+        return $this->belongsTo(SlotsViable::class, 'slot_id');
     }
 
     public function terapeuta(){
