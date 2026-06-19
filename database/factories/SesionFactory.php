@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Sesion;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,8 @@ class SesionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'terapeuta_id'    => User::factory(),
+            'paciente_id'    => User::factory(),
         ];
     }
 }
