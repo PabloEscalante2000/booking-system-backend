@@ -28,6 +28,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'rol' => 'c',
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
@@ -40,6 +41,22 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'rol' => 'a',
+        ]);
+    }
+
+    public function terapeuta(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'rol' => 't',
+            'precio' => fake()->numberBetween(5,10) * 10,
+            'especialidad' => fake()->randomElement(["terapeutico","deportivo","relajación","tejido profundo","drenaje linfático","reflexología","prenatal","rehabilitación","spa","tailandés"])
         ]);
     }
 }
