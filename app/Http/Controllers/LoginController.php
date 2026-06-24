@@ -28,11 +28,18 @@ class LoginController extends Controller
                     "id" => $user->id,
                     "type" => "usuario",
                     "attributes" => [
-                        "nombre" => $user->nombre,
+                        "name" => $user->name,
                         "email" => $user->email
                     ]
                 ]
             ]
         ], 200);
+    }
+
+    public function destroy(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(null,204);
     }
 }
