@@ -29,7 +29,8 @@ class LoginController extends Controller
                     "type" => "usuario",
                     "attributes" => [
                         "name" => $user->name,
-                        "email" => $user->email
+                        "email" => $user->email,
+                        "rol" => $user->rol
                     ]
                 ]
             ]
